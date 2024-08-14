@@ -1,0 +1,323 @@
+html,
+body {
+    /* remove fixed height and width */
+    margin: 0;
+    background-color: black;
+    height: 100%;
+    color: white;
+    /* overflow: auto; */
+}
+
+#mainBody {
+    text-align: center;
+    margin: 0 auto;
+    width: 26%;
+    max-width: 1000px;
+    min-width: 300px;
+    min-height: 580px;
+    /* min-width: 600px; */
+    /* use percentage instead of fixed width */
+    height: 70%;
+    /* allow height to adjust to content */
+    border: grey 1px solid;
+    background-color: black;
+    color: white;
+}
+
+
+/* media query for smaller screens */
+@media only screen and (max-width: 767px) {
+
+    html,
+    body {
+        /* remove fixed height and width */
+        margin: 0;
+        height: 100%;
+    }
+
+    #mainBody {
+        width: 80%;
+        max-width: none;
+        height: 70%;
+        /* adjust width for smaller screens */
+    }
+
+    #signUpMain {
+        height: 82%;
+        display: none;
+    }
+
+    #logInMain {
+        height: 82%;
+        display: block;
+    }
+
+    #thirdPartyLogIN {
+        /* align-items: center; */
+        height: 10%;
+    }
+
+    #signTogglePassword, #loginTogglePassword {
+        position: absolute;
+        color: black;
+        /*     z-index: 10000; */
+        cursor: pointer;
+        margin-left: -30px;
+        margin-top: 100px;
+    }
+
+    #thirdPartyLogIN {
+        align-items: center;
+        height: 5%;
+    }
+
+    #g_id_onload {
+        margin-top: 5%;
+        width: 210px;
+        margin-left: -10%;
+    }
+
+    .g_id_signin {
+        margin-top: 5%;
+        width: 210px;
+        margin-left: -10%;
+    }
+}
+
+#g_id_onload {
+    margin-top: 5%;
+    width: 210px;
+    margin-left: 23%;
+}
+
+.g_id_signin {
+    margin-top: 5%;
+    width: 210px;
+    margin-left: 23%;
+
+}
+
+.content_input {
+    margin-top: 3%;
+}
+
+.signup_div {
+    height: 10%;
+}
+
+#log_infor {
+    height: 80%;
+}
+
+#sign_infor {
+    height: 80%;
+}
+
+#changePasswordInfor {
+    height: 70%;
+}
+
+#signUpMain {
+    height: 82%;
+    display: none;
+}
+
+#logInMain {
+    height: 82%;
+    display: block;
+}
+
+#changePasswordMain {
+    height: 70%;
+    display: none;
+}
+
+.plb {
+    width: 45%;
+    padding: 5px;
+    border-radius: 5px;
+    float: none;
+    margin: 1%;
+}
+
+.plb_login {
+    height: 10%;
+}
+
+.plb_signup {
+    height: 95%;
+}
+
+.btn {
+    width: 35%;
+    height: 15%;
+    margin: 1% auto;
+    justify-content: center;
+    display: block;
+    color: #fff;
+    background: rgb(12, 182, 103);
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 2%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #4cd37b;
+}
+
+.infor_text {
+    font-size: 85%;
+}
+
+.linkP {
+    color: rgb(248, 248, 248);
+    text-decoration: underline;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.linkP:hover {
+    cursor: pointer;
+    color: #a7a7ef;
+}
+
+#thirdPartyLogIN {
+    align-items: center;
+    height: 5%;
+}
+
+
+/*
+.tpLogin {
+    width: 76%;
+    height: 35%;
+    margin: 6px auto;
+    justify-content: center;
+    display: block;
+    font-size: 0.98em;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+
+.google {
+    background-color: black;
+    color: white;
+    border: grey 1px solid;
+}
+
+.google:hover {
+    background-color: grey;
+}
+
+.fa-google-g-new {
+    background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 72% 54%/151% 151% no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.github {
+    color: black;
+    background-color: rgb(208, 205, 205);
+}
+
+.github:hover {
+    background-color: whitesmoke;
+} */
+
+.inforP {
+    font-weight: bold;
+    font-size: 120%;
+}
+
+
+
+.exten_inforP {
+    align-items: initial;
+    margin-left: 10px;
+}
+
+
+#loginE {
+    margin: 19px
+}
+
+#signupE {
+    margin: 23px;
+}
+
+#signP {
+    margin: 3px;
+}
+
+#changeE {
+    margin: 23px;
+}
+
+#changeP {
+    margin: 3px;
+}
+
+
+/* reference from https://stackoverflow.com/questions/2812770/add-centered-text-to-the-middle-of-a-horizontal-rule */
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid white;
+}
+
+.separator:not(:empty)::before {
+    margin-right: .25em;
+}
+
+.separator:not(:empty)::after {
+    margin-left: .25em;
+}
+
+#signPassword {
+    position: relative;
+}
+
+#loginPassword {
+    position: relative;
+}
+
+#changePassword {
+    position: relative;
+}
+
+
+#signTogglePassword, #loginTogglePassword {
+    position: absolute;
+    color: black;
+    cursor: pointer;
+    margin-left: -30px;
+    margin-top: 17px;
+}
+
+.fa-brands {
+    margin-top: -2px;
+    font-size: 1.6em;
+}
+
+*:focus {
+    border: 3px solid white;
+}

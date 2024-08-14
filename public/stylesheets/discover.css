@@ -1,0 +1,566 @@
+* {
+    line-height: 1.2em;
+}
+
+button{
+    cursor: pointer;
+}
+
+body{
+    background-color: black;
+}
+
+#secondary-header{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    background-color: black;
+}
+
+#beside-search{
+    margin-left: 1em;
+    color: white;
+    margin-top: 1em;
+}
+
+#search-div{
+    display: flex;
+    width: 55%;
+}
+
+#search{
+    border: 1.5px solid #eaeaeb;
+    border-radius: 25px;
+    width: 100%;
+    padding: 0.8em;
+    margin: 1.5em;
+    font-size: 14px;
+    transition: 0.4s;
+}
+
+#search-button{
+    font-size: 16px;
+    border:none;
+    color: lightgray;
+    margin-top: 2.6em;
+    margin-left: -3.5em;
+    transition: 0.4s;
+}
+
+#search:hover{
+    border: 2px solid black;
+}
+
+#search:hover + #search-button{
+    color: black;
+}
+
+#main-content {
+    margin-top: 1em;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 20px;
+    padding-right: 20px;
+    z-index: 0;
+}
+
+.club-info, #add-new{
+    width: 15em;
+    height: 17em;
+    margin: 0.6em;
+}
+
+.club-info:hover{
+    border: 1px solid lightgray;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.club-logo{
+    width: 85%;
+    height: 12em;
+    margin: auto;
+    margin-top: 0.5em;
+    display: block;
+}
+
+.club-name{
+    text-align: center;
+    color: lightgray;
+}
+
+#add-new{
+    order: 99999;
+}
+
+#add-new-club{
+    width: 85%;
+    height: 88%;
+    background-color: lightgray;
+    border: none;
+    padding: 1em;
+    font-size: 21px;
+    margin: 0.8em;
+    color: #333;
+}
+
+#add-new-club:hover{
+    background-color: #333;
+    border: 1px solid lightgray;
+    color: lightgray;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+#info{
+    display: flex;
+    position: bottom;
+}
+
+.image-input{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.image-input + label {
+    font-size: 1em;
+    color: #333;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #fff;
+    width: 80%;
+    border-radius: 5px;
+    border: 1px solid #bbb7b7;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.image-input:focus + label,
+.image-input + label:hover,
+.add-category:hover, .submit-btn:hover {
+    background-color: #333;
+    border: 1px solid #fff;
+    color: #fff;
+    transition: 0.4s;
+}
+
+.image-input + label * {
+	pointer-events: none;
+}
+
+.input-forms{
+    font-size: 1em;
+    color: #333;
+    display: inline-block;
+    background-color: #fff;
+    width: 80%;
+    border-radius: 5px;
+    border: 1px solid #bbb7b7;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.add-category{
+    font-size: 1em;
+    color: #333;
+    display: inline-block;
+    background-color: #fff;
+    width: 84%;
+    border-radius: 5px;
+    border: 1px solid #bbb7b7;
+    padding: 1em;
+    margin-bottom: 1em;
+    cursor: pointer;
+    text-align: left;
+}
+
+.submit-btn{
+    font-size: 1em;
+    color: #333;
+    display: inline-block;
+    background-color: #fff;
+    width: 84%;
+    border-radius: 5px;
+    border: 1px solid #bbb7b7;
+    padding: 1em;
+    margin-bottom: 1em;
+    cursor: pointer;
+    text-align: left;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    overflow: auto;
+}
+
+.close {
+    color: black;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+.club-info-popup{
+    width: 70%;
+    height: 30em;
+    display: flex;
+    flex-direction: row;
+}
+
+.img-extra{
+    margin-top: 2.5em;
+    position: relative;
+    height: 100%;
+    width: 35%;
+}
+
+.extra-club-logo{
+    max-width: 90%;
+    margin-top: 2em;
+    margin-left: 1em;
+    z-index: 999;
+}
+
+.extra-club-info{
+    margin-top: 7%;
+    font-size: large;
+    text-align: justify;
+}
+
+.heading-extra{
+    position: relative;
+    width: 60%;
+    max-height: 27em;
+}
+
+.new-page{
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    margin-top: 8%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    height: 3em;
+    width: 12em;
+    background-color: #333;
+    color: #f1f1f1;
+    z-index: 3;
+    position: static;
+}
+
+.new-page:hover{
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #333;
+    transition: 0.2s;
+}
+
+.delete-club{
+    border-radius: 5px;
+    border: none;
+    margin: 0;
+    position: static;
+    margin-top: 8%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    height: 3em;
+    width: 11em;
+    margin-left: 2%;
+    background-color: #333;
+    color: #f1f1f1;
+}
+
+.delete-club:hover{
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #333;
+    transition: 0.2s;
+}
+
+.fa-brands{
+    position: static;
+    margin-top: 8%;
+    margin-left: 2%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.fa-square-facebook{
+    font-size: 2em;
+    color: #4267B2;
+}
+
+.fa-instagram{
+    font-size: 2em;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.fa-discord{
+    font-size: 1.8em;
+    color: #7289d9;
+}
+
+.links:visited{
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .popup-content {
+        max-width: 95%;
+        max-height: 95%;
+        padding: 10px;
+    }
+
+    .close {
+        top: 5px;
+        right: 5px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .popup-content {
+        max-width: 100%;
+        max-height: 100%;
+        padding: 5px;
+    }
+
+    .close {
+        top: 2px;
+        right: 2px;
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width: 680px) {
+    .club-info-popup{
+        width: 75%;
+        height: 40em;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+    }
+
+    .img-extra{
+        width: 100%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .extra-club-logo{
+        width: 50%;
+        z-index: 999;
+    }
+
+    .delete-club{
+        margin-left: 0;
+    }
+
+    .heading-extra{
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .club-info-popup{
+        width: 75%;
+        height: 40em;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+    }
+
+    .img-extra{
+        width: 100%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .extra-club-logo{
+        width: 50%;
+        z-index: 999;
+    }
+
+    .delete-club{
+        margin-left: 0;
+        width: 9em;
+    }
+
+    .heading-extra{
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 350px) {
+    .club-info-popup{
+        width: 75%;
+        height: 40em;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+    }
+
+    .img-extra{
+        width: 100%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .extra-club-logo{
+        width: 50%;
+        z-index: 999;
+    }
+
+    .new-page{
+        width: 10em;
+    }
+
+    .delete-club{
+        margin-left: 0;
+        width: 8em;
+    }
+
+    .heading-extra{
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+#filter{
+    padding: 0;
+    margin: 0;
+    width: auto;
+}
+
+#filter-btn{
+    display: block;
+    border: none;
+    padding: 1em;
+    cursor: pointer;
+    height: 3em;
+    width: 8em;
+    margin: 2em;
+    margin-bottom: 0em;
+}
+
+#filter-btn:hover, .filter-btn-active{
+    color: #f1f1f1;
+    background-color: #333;
+    border: 0.2px solid white;
+    transition: 0.4s;
+}
+
+#filter-options{
+    display: none;
+    list-style: none;
+    margin-top: 0em;
+    width: auto;
+    overflow: auto;
+    position: absolute;
+}
+
+#filter-options label{
+    padding: 0.5em;
+    background-color: white;
+    font-weight: 400;
+    display: block;
+    clear: both;
+    color: #333;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+#filter-options #filter-submit{
+    border: none;
+    font-weight: 400;
+    display: block;
+    clear: both;
+    color: #333;
+    white-space: nowrap;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+
+@media (max-width: 1000px) {
+    #search-div{
+        display: flex;
+        width: 35%;
+    }
+}
+
+@media (max-width: 715px) {
+    #search-div{
+        display: flex;
+        width: 25%;
+    }
+
+    #filter-btn{
+        width: 7em;
+    }
+}
+
+@media (max-width: 615px) {
+    #search-div{
+        display: flex;
+        width: 25%;
+    }
+
+    #filter-btn{
+        width: 7em;
+    }
+
+
+    #beside-search{
+        margin-top: 2.5em;
+        font-size: 15px;
+        vertical-align: middle;
+    }
+
+    #search-button{
+        font-size: 16px;
+        border:none;
+        color: white;
+    }
+}

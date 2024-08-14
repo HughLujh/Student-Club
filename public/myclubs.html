@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Your Clubs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/discover.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/myclubs.css">
+    <script src="https://kit.fontawesome.com/73a899ae42.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/nav.css">
+</head>
+
+<body>
+    <header id="head_nav"></header>
+    <div id="secondary-header">
+        <h1 id="beside-search">Your Clubs</h1>
+        <div id="search-div">
+            <input type="text" placeholder="Search" id="search" onkeydown="handleKeyPress(event)">
+            <i class="fas fa-search" id="search-button" onclick="searchAll()"></i>
+        </div>
+
+
+        <div id="filter">
+            <button type="button" id="filter-btn" class="filter-btn-active" onclick="showFilters()">Filter by <i
+                    class="fa-solid fa-angle-down"></i> </button>
+
+                    <ul id="filter-options">
+                        <li class="optns">
+                            <label>
+                                <input type="checkbox" name="filter" value="Skills Development" checked /> Skills Development
+                            </label>
+                        </li>
+
+                        <li class="optns">
+                            <label>
+                                <input type="checkbox" name="filter" value="Religion" checked /> Religion
+                            </label>
+                        </li>
+
+                        <li class="optns">
+                            <label>
+                                <input type="checkbox" name="filter" value="Culture and Languages" checked /> Culture and Languages
+                            </label>
+                        </li>
+
+                        <li class="optns">
+                            <label>
+                                <input type="checkbox" name="filter" value="Faculty" checked /> Faculty
+                            </label>
+                        </li>
+
+                        <li class="optns">
+                            <label>
+                                <input type="checkbox" name="filter" value="Hobbies" checked /> Hobbies
+                            </label>
+                        </li>
+
+                        <li class="optns">
+                            <label>
+                                <input type="submit" value="Apply" id="filter-submit" onclick="test()" />
+                            </label>
+                        </li>
+                    </ul>
+        </div>
+        <button type="button" id="all_clubs" onclick="window.open('/discover', '_blank');">See All Clubs</button>
+    </div>
+
+    <div id="main-content">
+
+    </div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content club-info-popup">
+
+            <span class="close" onclick="closePopup()" id="close">&times;</span>
+
+            <div class="img-extra" id="img-logo">
+            </div>
+
+            <div class="heading-extra">
+                <h1 class="extra-club-name" id-="club-name-popup"> t </h1>
+
+                <p class="extra-club-info" id="desc">
+                </p>
+                <p class="extra-club-info" id="categories"><strong>Categories:</strong></p>
+
+                <button type="button" class="new-page" onclick="newPage(this.id)">More information...</button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="javascripts/myclub.js"></script>
+    <script type="text/javascript" src="javascripts/nav.js"></script>
+</body>
+
+</html>

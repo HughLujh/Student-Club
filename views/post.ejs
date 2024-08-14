@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Post</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/posts.css">
+</head>
+
+<body onload="get_nav()">
+    <header id="head_nav"></header>
+
+    <div class="main_body">
+        <div id="back">
+            <a href="/clubs/<%=post.club_id%>"> &lt; <%=post.name%></a>
+        </div>
+
+        <div class="post" id="<%= post.id %>">
+            <% if (post.picture) { %>
+            <img class="post_image" src="<%=post.picture%>" alt="Post Image">
+            <% } %>
+            <div>
+                <div class="post_head">
+                    <div>
+                        <p class="post_first"><a href="/users/<%=post.username%>"><%=post.username%></a> (<a href="/clubs/<%=post.club_id %>"><%=post.name %></a>) <span class="post_timestamp">on <%= post.timestamp %> (<%= post.visibility%>)</span></p>
+                        <p class="post_title"><%= post.title %></p>
+                    </div>
+                </div>
+                <div>
+                    <p class="post_caption"><%= post.content %></p>
+                </div>
+            </div>
+        </div>
+
+    <% if (d) { %>
+        <button id="deleteButton" type="button" onclick="if(window.confirm('Are you sure you want to delete this post?')) {window.location.pathname+='/delete'}">Delete Post</button>
+    <% } %>
+    <footer></footer>
+
+    <script type="text/javascript" src="/javascripts/nav.js"></script>
+</body>
+
+</html>

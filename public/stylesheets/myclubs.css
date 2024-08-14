@@ -1,0 +1,17 @@
+#all_clubs {
+    display: inline-block;
+    border: none;
+    padding: 1em;
+    cursor: pointer;
+    height: 3em;
+    width: 10em;
+    margin: 2em;
+    margin-bottom: 0em;
+}
+
+#all_clubs:hover {
+    color: #f1f1f1;
+    background-color: #333;
+    border: 0.2px solid white;
+    transition: 0.4s;
+}

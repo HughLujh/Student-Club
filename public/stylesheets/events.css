@@ -1,0 +1,83 @@
+#event-layout{
+    height: 42em;
+    width: 80%;
+    margin: auto
+}
+
+#event-heading{
+    color: lightgray;
+    text-align: center;
+    font-size: 45px;
+}
+
+.event-info{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.event-dropdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 32px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.event-dropdown p {
+    font-size: 25px;
+    padding: 1em;
+}
+
+.event-dropdown img {
+    height: 32px;
+    width: 32px;
+}
+
+.event-card{
+    width: 20em;
+    height: auto;
+    padding: 1em;
+    margin: 0.6em;
+    margin-left: 2em;
+    background-color: black;
+    color: lightgray;
+    border: 1px solid lightblue;
+}
+
+.event-name{
+    text-align: center;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
+}
+
+.event-venue{
+    text-align: center;
+    font-size: larger;
+    margin-bottom: 1em;
+}
+
+.buttons-for-events{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.RSVP-btn{
+    background-color: lightgray;
+    border: none;
+    padding: 1.5em;
+    margin-left: 0.5em;
+    color: #333;
+    cursor: pointer;
+}
+
+.RSVP-btn:hover{
+    background-color: #333;
+    border: 1px solid lightgray;
+    color: lightgray;
+    cursor: pointer;
+    transition: 0.4s;
+}

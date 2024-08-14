@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Home</title>
+        <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+        <link rel="stylesheet" type="text/css" href="stylesheets/home.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+        <link rel="stylesheet" type="text/css" href="stylesheets/nav.css">
+    </head>
+    <body onload="get_nav(); update_featured(); update_posts()">
+        <header id="head_nav"></header>
+        <div id="main_slide">
+            <div class="slide fade block" style="display: block">
+                <img v-if="featured_club[0].image" v-bind:src="featured_club[0].image.url" alt="Featured Club">
+                <img v-if="!featured_club[0].image" src="/images/club_placeholder.jpg" alt="Featured Club">
+                <div class="slide_caption">Featured Club</div>
+                <div class="slide_main">
+                    <div class="slide_info">
+                        <p>{{ featured_club[0].name }} ({{ featured_club[0].category1 }})</p>
+                        <br>
+                        <p>{{ featured_club[0].description }}</p>
+                    </div>
+                    <button type="button" class="slide_button" @click="get_f_club()">Learn More</button>
+                </div>
+                <div v-if="featured_club[0].image" class="slide-att">
+                    Photo by <a v-bind:href="'https://unsplash.com/@' + featured_club[0].image.user.username + '?utm_source=Langen&utm_medium=referral'">{{ featured_club[0].image.user.name }}</a> on <a href="https://unsplash.com/?utm_source=Langen&utm_medium=referral">Unsplash</a>
+                </div>
+            </div>
+
+            <div class="slide fade">
+                <img v-if="featured_event[0].image" v-bind:src="featured_event[0].image.url" alt="Featured Event">
+                <img v-if="!featured_event[0].image" src="/images/event_placeholder.jpg" alt="Featured Event">
+                <div class="slide_caption">Featured Event</div>
+                <div class="slide_main">
+                    <div class="slide_info">
+                        <p>{{ featured_event[0].title }} ({{ featured_event[0].name }})</p>
+                        <br>
+                        <p>On: {{ featured_event[0].event_time }}</p>
+                        <br>
+                        <p>At: {{ featured_event[0].location }}</p>
+                        <br>
+                        <p>{{ featured_event[0].content }}</p>
+                    </div>
+                    <button type="button" class="slide_button" @click="get_f_event()">Learn More</button>
+                </div>
+                <div v-if="featured_event[0].image" class="slide-att">
+                    Photo by <a v-bind:href="'https://unsplash.com/@' + featured_event[0].image.user.username + '?utm_source=Langen&utm_medium=referral'">{{ featured_event[0].image.user.name }}</a> on <a href="https://unsplash.com/?utm_source=Langen&utm_medium=referral">Unsplash</a>
+                </div>
+            </div>
+
+            <a class="prev" onclick="change_slide(-1)">&#10094;</a>
+            <a class="next" onclick="change_slide(1)">&#10095;</a>
+
+            <div class="dots" style="text-align:center">
+                <span class="dot active" onclick="current_slide(1)"></span>
+                <span class="dot" onclick="current_slide(2)"></span>
+            </div>
+        </div>
+
+        <div id="posts">
+            <div class="post" v-for="post in posts">
+                <img class="post_image" v-if="post.picture" v-bind:src="post.picture" alt="Post Image">
+                <div>
+                    <div class="post_head">
+                        <div>
+                            <p class="post_first"><a v-bind:href="'/users/' + post.username">{{ post.username }}</a> (<a v-bind:href="'/clubs/' + post.club_id">{{ post.name }}</a>) <span class="post_timestamp">on {{ post.timestamp }} ({{ post.visibility }})</span></p>
+                            <p class="post_title">{{ post.title }} (<a v-bind:href="'/clubs/' + post.club_id + '/posts/' + post.id" >View Post</a>)</p>
+                        </div>
+                    </div>
+                    <p class="post_caption" v-if="post.content">{{ post.content }}</p>
+                </div>
+            </div>
+            <button type="button" id="load_posts" onclick="update_posts()">Load More Posts</button>
+        </div>
+
+        <footer></footer>
+
+        <script type="text/javascript" src="javascripts/nav.js"></script>
+        <script type="text/javascript" src="javascripts/home.js"></script>
+    </body>
+</html>

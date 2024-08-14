@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Approval of a club</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="stylesheets/discover.css">
+        <script src="https://kit.fontawesome.com/73a899ae42.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="stylesheets/nav.css">
+    </head>
+
+    <body >
+        <header id="head_nav"></header>
+
+
+        <div id="secondary-header">
+            <h1 id="beside-search">Approval of a new club</h1>
+            <div id="search-div">
+                <input type="text" placeholder="Search" id="search">
+                <i class="fas fa-search" id="search-button"></i>
+            </div>
+        </div>
+
+
+        <div id="main-content">
+
+            <div class="club-info">
+                <img src="/images/comp_sci_club.png" alt="logo" class="club-logo" />
+                <h3 class="club-name">Computer Science Club </h3>
+            </div>
+
+        </div>
+
+        <div class="popup">
+
+            <div class="popup-content club-info-popup">
+
+                <span class="close" onclick="closePopup()">&times;</span>
+
+                <div class="img-extra">
+                    <img src="/images/comp_sci_club.png" alt="logo" class="extra-club-logo" />
+                </div>
+
+                <div class="heading-extra">
+                    <h1 class="extra-club-name">Computer Science Club</h1>
+
+                    <p class="extra-club-info">
+                        The Computer Science Club of the University of Adelaide is a student run club for those with an interest in computer science or computing in general. Though we are a university club, we welcome anyone interested in computer science and/or socialising to join!
+                    </p>
+                    <p class="extra-club-info"><strong>Categories:</strong> Computer Science, ECMS</p>
+
+                    <button type="button" class="new-page" onclick="newPage()">Approve Club!</button>
+                    <button type="button" class="delete-club" onclick="deleteClub()">Reject Club!</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <script type="text/javascript" src="javascripts/discover.js"></script>
+        <script type="text/javascript" src="javascripts/nav.js"></script>
+    </body>
+</html>

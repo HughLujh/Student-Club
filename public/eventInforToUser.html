@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Event Detail</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" text="text/css" href="./stylesheets/eventInforToUser.css" />
+    <script src="https://kit.fontawesome.com/41381684e7.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="stylesheets/nav.css">
+
+</head>
+
+<body onload="get_nav();">
+    <header id="head_nav"></header>
+
+    <div id="mainBody">
+        <div class="e_title">
+            <p class="e_title_name">Event Title</p>
+        </div>
+        <div id="row">
+            <div id="e_infor">
+                <div id="e_infor_body">
+                    <p>here is the detail about the event</p>
+                    <p>here is the detail about the event</p>
+                    <p>here is the detail about the event</p>
+                    <p>here is the detail about the event</p>
+                    <p>here is the detail about the event</p>
+                </div>
+<!--The text inside this html is retrieved from the database-->
+                <div id="e_infor_main">
+                    <p>
+                        Time: <span id="eventTime"></span>
+                    </p>
+                    <p>
+                        Location: <span id="eventLocation"></span>
+                    </p>
+                    <p>
+                        Event Coordinator Contact Details:
+                    </p>
+                    <p>
+                        Email: <span id="coordinatorEmail"></span>
+                    </p>
+                    <p>
+                        Phone Number: <span id="coordinatorPhone"></span>
+                    </p>
+                </div>
+
+            </div>
+            <div id="list">
+                <h4>List of Participants</h4>
+                <ul id="user_list">
+                    <li>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                user 1
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                user 2
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                user 3
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <div id="btn_pos">
+            <button type="button" id="btn" onclick="handleRSVP()">RSVP</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="javascripts/eventInforToUser.js"></script>
+    <script type="text/javascript" src="javascripts/nav.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+npm install nodemailer
+npm i nodemon
+
+------------
+
+ -- to run the server follow through the following steps
+service mysql start
+mysql
+CREATE USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+GRANT ALL PRIVILEGES ON * . * TO 'username'@'localhost';
+
+--------------
+npm install --save express-session
+npm install google-auth-library --save
+npm install --save argon2
+
+-------------
+
+npm install multer --save
+npm i vue-router@next --save
+npm install ejs --save

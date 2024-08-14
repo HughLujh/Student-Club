@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notification Settings</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" text="text/css" href="stylesheets/notification.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/nav.css">
+
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body onload="check();tabindex();addEnterKey();get_nav()">
+    <!-- preSetNoti(); -->
+    <header id="head_nav"></header>
+
+    <div id="mainBody">
+
+        <div id="noti_title">
+            <div id="page_name"><span>Notification Settings</span></div>
+            <div id="search-div">
+                <input type="text" class="search-input" placeholder="Search for club " v-model="searchItems">
+                <button type="submit" class="search-button" v-on:click="getClubs">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+        </div>
+        <table id="club_content">
+            <tr>
+                <th id="club_title">
+                    <span>Club Name</span>
+                </th>
+                <th>
+                    <div id="email_title"><span>Email</span></div>
+                    <div id="user_email">
+                        <span>{{userEmail}}</span>
+                    </div>
+                </th>
+            </tr>
+            <template v-if="normalItems">
+                <template v-for="(club, club_id) in allClubList">
+                    <tr :id="`${club.club_id}`">
+                        <td class="span_text_title club_box_title" v-on:click="changeVisibility(club.club_id)">
+                            <!-- v-on:click=" changeVisibility(club.club_id)" -->
+                            <img src="images/users/communication/arrow.png" alt="arrow picture" class="arrow">
+                            <span>{{club.name}}</span>
+                        </td>
+                        <td>
+                            <div class="format">
+                                <span class="material-symbols-outlined" :class="{
+                                'on_noti': club.receive_event_updates || club.receive_post_updates,
+                                'off_noti': !club.receive_event_updates && !club.receive_post_updates
+                              }"
+                                    v-on:click="changeNoti(club.club_id, 'all', club.receive_event_updates || club.receive_post_updates)">
+                                    {{ club.receive_event_updates || club.receive_post_updates ? 'notifications' :
+                                    'notifications_off' }}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr :id="`${club.club_id}_event`">
+                        <td class="sub_text_title">
+                            <span>{{ club.name }}-Event</span>
+                        </td>
+
+                        <td>
+                            <div class="format">
+                                <span class="material-symbols-outlined"
+                                    :class="{'on_noti': club.receive_event_updates, 'off_noti': !club.receive_event_updates}"
+                                    v-on:click="changeNoti(club.club_id, 'event', club.receive_event_updates)">
+                                    {{ club.receive_event_updates ? 'notifications' : 'notifications_off' }}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr :id="`${club.club_id}_post`">
+                        <td class="sub_text_title"> <span>{{ club.name }}-Post</span></td>
+
+                        <td>
+                            <div class="format">
+                                <span class="material-symbols-outlined"
+                                    :class="{'on_noti': club.receive_post_updates, 'off_noti': !club.receive_post_updates}"
+                                    v-on:click="changeNoti(club.club_id, 'post', club.receive_post_updates)">
+                                    {{ club.receive_post_updates ? 'notifications' : 'notifications_off' }}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </template>
+            </template>
+
+            <template v-else>
+                <template v-for="(club, club_id) in matchItems">
+                    <tr :id="`${club.club_id}`">
+                        <td class="span_text_title club_box_title" v-on:click="changeVisibility(club.club_id)">
+                            <!-- v-on:click=" changeVisibility(club.club_id)" -->
+                            <img src="images/users/communication/arrow.png" alt="arrow picture" class="arrow">
+                            <span>{{club.name}}</span>
+                        </td>
+                        <td>
+                            <div class="format">
+                                <span class="material-symbols-outlined" :class="{
+                                'on_noti': club.receive_event_updates || club.receive_post_updates,
+                                'off_noti': !club.receive_event_updates && !club.receive_post_updates
+                              }"
+                                    v-on:click="changeNoti(club.club_id, 'all', club.receive_event_updates || club.receive_post_updates)">
+                                    {{ club.receive_event_updates || club.receive_post_updates ? 'notifications' :
+                                    'notifications_off' }}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr :id="`${club.club_id}_event`">
+                        <td class="sub_text_title">
+                            <span>{{ club.name }}-Event</span>
+                        </td>
+
+                        <td>
+                            <div class="format">
+                                <span class="material-symbols-outlined"
+                                    :class="{'on_noti': club.receive_event_updates, 'off_noti': !club.receive_event_updates}"
+                                    v-on:click="changeNoti(club.club_id, 'event', club.receive_event_updates)">
+                                    {{ club.receive_event_updates ? 'notifications' : 'notifications_off' }}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr :id="`${club.club_id}_post`">
+                        <td class="sub_text_title"> <span>{{ club.name }}-Post</span></td>
+
+                        <td>
+                            <div class="format">
+                                <span class="material-symbols-outlined"
+                                    :class="{'on_noti': club.receive_post_updates, 'off_noti': !club.receive_post_updates}"
+                                    v-on:click="changeNoti(club.club_id, 'post', club.receive_post_updates)">
+                                    {{ club.receive_post_updates ? 'notifications' : 'notifications_off' }}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </template></template>
+
+
+
+
+        </table>
+    </div>
+    <script src="https://kit.fontawesome.com/41381684e7.js" crossorigin="anonymous"></script>
+    <script src="javascripts/notification.js" type="text/javascript"></script>
+    <script type="text/javascript" src="javascripts/lib/loginCheck.js"></script>
+    <script type="text/javascript" src="javascripts/nav.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Club</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/club.css">
+    <script src="https://kit.fontawesome.com/73a899ae42.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/events.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css">
+</head>
+
+<body onload="showHome(<%= rows.id %>, <%= m %>);get_nav();loadNotificationButton();">
+    <header id="head_nav"></header>
+
+    <div id="main-content">
+
+        <div>
+            <button id="menu-btn" type="button" onclick="showSidebar()"><i class="fa-solid fa-bars"></i></button>
+            <nav id="sidebar">
+                <a class="scroll-link" href="#" onclick="showHome(<%= rows.id %>)">Home</a>
+                <a class="scroll-link" href="#" onclick="showPosts()">Posts</a>
+                <a class="scroll-link" href="#" onclick="showEvents()">Events</a>
+                <a class="scroll-link" href="#" onclick="showContact()">Contact Us</a>
+                <a class="scroll-link" href="#" onclick="showCommittee()">Club Managers</a>
+                <% if (m) { %>
+                    <a class="scroll-link" href="#" onclick="newPost(<%= rows.id %>)" id="onlyManager2">Create New Post</a>
+                    <a class="scroll-link" href="#" onclick="showMembers()" id="onlyManager">Club Members</a>
+                <% } %>
+            </nav>
+        </div>
+
+        <div id="home-layout" class="club-section">
+            <p id="home-heading">
+                <%= rows.name %>
+            </p>
+            <div id="club-info">
+                <img src="<%=rows.picture%>" alt="logo" id="club-logo" class="club-logo-page2" />
+
+                <div id="edit-bundle-para">
+                    <p id="info">
+                        <%=rows.description%>
+                    </p>
+                    <% if (m) { %>
+                        <button type="button" class="edit-btn" id="<%=rows.id%>"
+                            onclick="editInformation(this.id)">Edit</button>
+                        <% } %>
+                        <% if (!m) { %>
+                            <button type="button" class="club-btn" id="join_btn" onclick="join(<%= rows.id %>)">Join
+                                Club</button>
+                            <button type="button" class="club-btn" id="leave_btn" onclick="leaveClub(<%= rows.id %>)"
+                                style="display:none;">Leave Club</button>
+                        <% } %>
+
+                            <button type="button" class="club-btn newsletter" id="receiveNoti"
+                                onclick="receiveNotification(<%= rows.id %>)">Receive
+                                Notification</button>
+                            <button type="button" class="club-btn newsletter" id="notReceiveNoti"
+                                onclick="cancelNotification(<%= rows.id %>)" style="display:none;">Don't
+                                receive
+                                Notification</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="members-layout" class="club-section">
+            <p id="member-heading">MANAGERS</p>
+            <div id="commitee-member-layout">
+
+                <% if (m) { %>
+                    <div id="add-new-member">
+                        <input type="button" id="add-member" value="Add New Manager"
+                            onclick="newMember(<%= rows.id %>)">
+                    </div>
+                    <% } %>
+                        <% for(var i=0; i < managers.length; i++) { %>
+                            <div class="member-info">
+                                <div class="img">
+                                    <img src="<%=managers[i].profile_picture%>" alt="Commitee Member"
+                                        class="member-img" />
+                                </div>
+                                <h3 class="member-name">
+                                    <%= managers[i].user_email %>
+                                </h3>
+                            </div>
+                            <% } %>
+
+            </div>
+        </div>
+
+        <div id="event-layout" class="club-section">
+            <!-- <div id="event-layout" onload="populate_events()"> used to dynamically add event posts once database is setup -->
+
+            <p id="event-heading">EVENTS</p>
+            <div class="event-dropdown">
+                <img src="/images/users/communication/arrow.png" alt="arrow picture" class="arrow">
+                <p @click="upcoming = !upcoming">Upcoming</p>
+            </div>
+            <div v-if="upcoming" class="event-info">
+                <% if (m) { %>
+                    <div id="add-new-event">
+                        <input type="button" id="add-event" value="Add New Event" onclick="newEvent(<%=rows.id%>)">
+                    </div>
+                    <% } %>
+                        <% for(var i=0; i < events.length; i++) { %>
+                            <div class="event-card">
+                                <h1 class="event-name">
+                                    <%= events[i].title %>
+                                </h1>
+                                <p class="event-venue"><strong>Venue:</strong>
+                                    <%= events[i].location %>
+                                </p>
+                                <p class="event-venue"><strong>Time:</strong>
+                                    <%= events[i].event_time %>
+                                </p>
+                                <div class="buttons-for-events">
+                                    <% if (!m) { %>
+                                    <button type="button" class="RSVP-btn RSVP-OR-LEAVE" id="event<%=events[i].id%>"
+                                        onclick="RSVP(this.id, <%=rows.id%>)">RSVP</button>
+                                    <button type="button" class="RSVP-btn RSVP-OR-LEAVE" id="event<%=events[i].id%>pt2"
+                                        style="display:none"
+                                        onclick="Leave(<%=events[i].id%>, <%=rows.id%>)">LEAVE</button>
+                                    <% } %>
+                                    <% if (m) { %>
+                                    <button type="button" class="RSVP-btn" id="event<%=events[i].id%>"
+                                        onclick="Delete(this.id, <%=rows.id%>, '<%=events[i].title %>')">DELETE</button>
+                                    <% } %>
+                                    <% if (!m) { %>
+                                        <button type="button" class="RSVP-btn onlyManager4"
+                                            onclick="moreInfoForEvents(<%=events[i].id%>, <%=rows.id%>)">More
+                                            information</button>
+                                    <% } %>
+                                    <% if (m) { %>
+                                        <button type="button" class="RSVP-btn onlyManager3"
+                                            onclick="editInfoForEvents(<%=rows.id%>, <%=events[i].id%>)">Edit
+                                            information</button>
+                                    <% } %>
+                                </div>
+                            </div>
+                        <% } %>
+
+            </div>
+
+            <div class="event-dropdown">
+                <img src="/images/users/communication/arrow.png" alt="arrow picture" class="arrow">
+                <p @click="previous = !previous">Previous</p>
+            </div>
+
+            <div v-if="previous" class="event-info">
+                <% for(var i=0; i < past_events.length; i++) { %>
+                    <div class="event-card">
+                        <h1 class="event-name">
+                            <%= past_events[i].title %>
+                        </h1>
+                        <p class="event-venue"><strong>Venue:</strong>
+                            <%= past_events[i].location %>
+                        </p>
+                        <p class="event-venue"><strong>Time:</strong>
+                            <%= past_events[i].event_time %>
+                        </p>
+                        <div class="buttons-for-events">
+                            <button type="button" class="RSVP-btn"
+                                onclick="moreInfoForEvents(<%=past_events[i].id%>, <%=rows.id%>)">More
+                                information</button>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+
+        </div>
+
+        <div id="club-posts" class="club-section">
+            <p id="posts-heading">POSTS</p>
+                <% for(var i=0; i < posts.length; i++) { %>
+                    <div class="post" id="<%= posts[i].id %>">
+                        <% if (posts[i].picture) { %>
+                            <img class="post_image" src="<%=posts[i].picture%>" alt="Post Image">
+                            <% } %>
+                                <div>
+                                    <div class="post_head">
+                                        <div>
+                                            <p class="post_first"><a href="/users/<%=posts[i].username%>">
+                                                    <%=posts[i].username%>
+                                                </a> (<a href="/clubs/<%=posts[i].club_id %>"><%=rows.name %></a>) <span class="post_timestamp">on <%= posts[i].timestamp %> (<%= posts[i].visibility %>)</span>
+                                            </p>
+                                            <p class="post_title">
+                                                <%= posts[i].title %> (<a href="/clubs/<%=posts[i].club_id%>/posts/<%=posts[i].id%>">View Post</a>)
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                    <p class="post_caption">
+                                        <%= posts[i].content %>
+                                    </p>
+                                </div>
+                    </div>
+
+                    <% } %>
+                    <div class="footer-space"></div>
+        </div>
+
+        <div id="contact-us" class="club-section">
+            <p id="contact-heading">Contact Us!</p>
+            <div id="contact-form">
+                <form>
+                    <input type="text" placeholder="Title" name="title" class="contact-form-inputs" id="emailTitle"
+                        required />
+                    <textarea rows="10" placeholder="MESSAGE" name="msg" class="contact-form-input" id="emailContent"
+                        required></textarea>
+                    <button class="submit-button" type="submit" onclick="sendEmail()">
+                        <i class="fa fa-paper-plane"></i>
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div id="list-of-members" class="club-section">
+            <p id="list-of-club-members">Club Members!</p>
+            <div id="members-profile-table">
+                <table id="club-member-info">
+                    <tr>
+                        <th>Member information (click to see their profile)</th>
+                    </tr>
+
+                    <% for(var i=0; i < members.length; i++) { %>
+                        <tr>
+                            <td>
+                                <a href="../users/<%=members[i].username%>">
+                                    <%=members[i].username%> (<%=members[i].user_email%>)
+                                </a>
+                            </td>
+                        </tr>
+                        <% } %>
+
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="/javascripts/club.js"></script>
+    <script type="text/javascript" src="/javascripts/nav.js"></script>
+</body>
+
+</html>

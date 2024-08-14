@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Your Events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/club.css">
+    <script src="https://kit.fontawesome.com/73a899ae42.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/events.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/nav.css">
+</head>
+
+<body onload="get_nav(); RSVPedEvents(); displayEvents(); displayUpcomingEvents()">
+    <header id="head_nav"></header>
+
+    <div id="event-layout">
+        <!-- <div id="event-layout" onload="populate_events()"> used to dynamically add event posts once database is setup -->
+
+        <p id="event-heading">YOUR EVENTS</p>
+        <div class="event-dropdown">
+            <img src="images/users/communication/arrow.png" alt="arrow picture" class="arrow">
+            <p @click="rsvp = !rsvp">RSVPed</p>
+        </div>
+        <div v-if="rsvp" class="event-info">
+
+            <div class="event-card" v-for="event in RSVPEvents">
+                <h1 class="event-name">{{ event.title }}</h1>
+                <p class="event-venue">{{ event.name }}</p>
+                <p class="event-venue"><strong>Venue:</strong> {{ event.location }}</p>
+                <p class="event-venue"><strong>Time:</strong> {{ event.event_time }}</p>
+                <div class="buttons-for-events">
+                    <button type="button" class="RSVP-btn" @click="Leave(event.id)">Leave</button>
+                    <button type="button" class="RSVP-btn" @click="moreInfoForEvents(event.id, event.club_id)">More information</button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="event-dropdown">
+            <img src="images/users/communication/arrow.png" alt="arrow picture" class="arrow">
+            <p @click="upcoming = !upcoming">Upcoming</p>
+        </div>
+        <div v-if="upcoming" class="event-info">
+            <div class="event-card" v-for="event in upcomingEvents">
+                <h1 class="event-name"> {{ event.title }} </h1>
+                <p class="event-venue">  {{ event.name }} </p>
+                <p class="event-venue"><strong>Venue:</strong> {{ event.location }} </p>
+                <p class="event-venue"><strong>Time:</strong> {{ event.event_time }} </p>
+                <div class="buttons-for-events">
+                    <button type="button" class="RSVP-btn" @click="RSVP(event.id)">RSVP</button>
+                    <button type="button" class="RSVP-btn" @click="moreInfoForEvents(event.id, event.club_id)">More information</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-dropdown">
+            <img src="images/users/communication/arrow.png" alt="arrow picture" class="arrow">
+            <p @click="previous = !previous">Previous</p>
+        </div>
+        <div v-if="previous" class="event-info">
+            <div class="event-card" v-for="event in pastEvents">
+                <h1 class="event-name">{{ event.title }}</h1>
+                <p class="event-venue"> {{ event.name }} </p>
+                <p class="event-venue"><strong>Venue:</strong> {{ event.location }} </p>
+                <p class="event-venue"><strong>Time:</strong> {{ event.event_time }} </p>
+                <div class="buttons-for-events">
+                    <button type="button" class="RSVP-btn" @click="moreInfoForEvents(event.id, event.club_id)">More information</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="javascripts/myevent.js"></script>
+    <script type="text/javascript" src="javascripts/nav.js"></script>
+</body>
+
+</html>

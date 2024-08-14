@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>New Post</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/new_post.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css">
+</head>
+
+<body onload="get_nav()">
+    <header id="head_nav"></header>
+
+    <div class="main_body">
+        <div id="back">
+            <a href="/clubs/<%=id%>"> &lt; <%=name%></a>
+        </div>
+
+        <div class="post_title">
+            <h2>Post Title</h2>
+            <input type="text" name="title" id="title" placeholder="Topic title" maxlength="50" required>
+        </div>
+
+        <div class="post_content_text">
+            <textarea id="post_content" title="post_content" name="post_content" placeholder="Enter text here..."
+                maxlength="500"></textarea>
+        </div>
+        <div class="bottom">
+            <div class="image">
+                <label id="imageLabel" for="imageInput">Add Image to Post</label>
+                <input type="file" name="image" id="imageInput" accept="image/*">
+            </div>
+            <div class="available_selector">
+                <label for="availability">Available</label>
+                <select id="availability" name="availability" class="available_drop_menu">
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <div class="cancel">
+                <button type="button" onclick="history.back()">Cancel</button>
+            </div>
+            <div class="post">
+                <button type="button" onclick="post(<%=id%>)">Post</button>
+            </div>
+        </div>
+    </div>
+
+    <footer></footer>
+
+    <script type="text/javascript" src="/javascripts/nav.js"></script>
+    <script type="text/javascript" src="/javascripts/new_post.js"></script>
+</body>
+
+</html>
